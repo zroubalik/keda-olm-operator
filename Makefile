@@ -1,9 +1,9 @@
 ##################################################
 # Variables                                      #
 ##################################################
-IMAGE_TAG      ?= master
+IMAGE_TAG      ?= webhook
 IMAGE_REGISTRY ?= docker.io
-IMAGE_REPO     ?= kedacore
+IMAGE_REPO     ?= zroubalik
 
 IMAGE_CONTROLLER = $(IMAGE_REGISTRY)/$(IMAGE_REPO)/keda-olm-operator:$(IMAGE_TAG)
 

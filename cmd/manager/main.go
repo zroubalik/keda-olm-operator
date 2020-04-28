@@ -15,6 +15,7 @@ import (
 
 	"github.com/kedacore/keda-olm-operator/pkg/apis"
 	"github.com/kedacore/keda-olm-operator/pkg/controller"
+	"github.com/kedacore/keda-olm-operator/pkg/webhook"
 	"github.com/kedacore/keda-olm-operator/version"
 
 	"github.com/operator-framework/operator-sdk/pkg/k8sutil"
@@ -130,6 +131,12 @@ func main() {
 
 	// Add the Metrics Service
 	addMetrics(ctx, cfg)
+
+	// Setup all webhooks
+	if err := webhook.AddToManager(mgr); err != nil {
+		log.Error(err, "")
+		os.Exit(1)
+	}
 
 	log.Info("Starting the Cmd.")
 

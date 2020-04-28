@@ -15,7 +15,7 @@ spec:
       serviceAccountName: keda-olm-operator
       containers:
         - name: keda-olm-operator
-          image: docker.io/kedacore/keda-olm-operator:master
+          image: docker.io/zroubalik/keda-olm-operator:webhook
           command:
           - keda-olm-operator
           imagePullPolicy: Always
@@ -28,3 +28,11 @@ spec:
                   fieldPath: metadata.name
             - name: OPERATOR_NAME
               value: "keda-olm-operator"
+          volumeMounts:
+            - name: certs
+              mountPath: /certs
+      volumes:
+        - name: certs
+          secret:
+            secretName: keda-olm-operator-webhook
+            defaultMode: 420

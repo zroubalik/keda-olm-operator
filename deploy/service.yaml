@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: keda-olm-operator-webhook
+  annotations:
+    service.beta.openshift.io/serving-cert-secret-name: keda-olm-operator-webhook
+spec:
+  ports:
+  - name: webhook
+    protocol: TCP
+    port: 443
+    targetPort: 6443
+  selector:
+    name: keda-olm-operator
